@@ -1,0 +1,85 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!-- was: <?xml version="1.0" encoding="UTF-8"?> -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+       http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
+       http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
+
+    <bean class="org.springframework.web.servlet.mvc.support.ControllerClassNameHandlerMapping"/>
+
+    <!--
+    Most controllers will use the ControllerClassNameHandlerMapping above, but
+    for the index controller we are using ParameterizableViewController, so we must
+    define an explicit mapping for it.
+    -->
+    <bean id="urlMapping" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+        <property name="mappings">
+            <props>
+                
+                <prop key="altaAdopcion.htm">adopcion</prop>
+                <prop key="listaadopcion.htm">adopcion</prop>
+                <prop key="editarAdopcion.htm">adopcion</prop>
+                <prop key="eliminaradopcion.htm">adopcion</prop>
+                
+                <prop key="altaAnimal.htm">animal</prop>
+                <prop key="listaanimal.htm">animal</prop>
+                <prop key="editarAnimal.htm">animal</prop>
+                <prop key="eliminaranimal.htm">animal</prop>
+                
+                <prop key="altaBlacklist.htm">blacklist</prop>
+                <prop key="listablacklist.htm">blacklist</prop>
+                <prop key="editarBlacklist.htm">blacklist</prop>
+                <prop key="eliminarblacklist.htm">blacklist</prop>
+                
+                <prop key="altaDonaciones.htm">donaciones</prop>
+                <prop key="listadonaciones.htm">donaciones</prop>
+                <prop key="editarDonaciones.htm">donaciones</prop>
+                <prop key="eliminardonaciones.htm">donaciones</prop>                                
+                
+                <prop key="altaEmpleado.htm">empleado</prop>
+                <prop key="listaempleado.htm">empleado</prop>
+                <prop key="editarEmpleado.htm">empleado</prop>
+                <prop key="eliminarempleado.htm">empleado</prop>
+                
+                <prop key="altaSeguimiento.htm">seguimiento</prop>
+                <prop key="listaseguimiento.htm">seguimiento</prop>
+                <prop key="editarSeguimiento.htm">seguimiento</prop>
+                <prop key="eliminarseguimiento.htm">seguimiento</prop>
+                
+                <prop key="altaSucursal.htm">sucursal</prop>
+                <prop key="listasucursal.htm">sucursal</prop>
+                <prop key="editarSucursal.htm">sucursal</prop>
+                <prop key="eliminarsucursal.htm">sucursal</prop>
+                
+                
+                
+                <prop key="index.htm">indexController</prop>
+            </props>
+        </property>
+    </bean>
+
+    <bean id="viewResolver"
+          class="org.springframework.web.servlet.view.InternalResourceViewResolver"
+          p:prefix="/WEB-INF/jsp/"
+          p:suffix=".jsp" />
+
+    <!--
+    The index controller.
+    -->
+    <bean name="indexController"
+          class="org.springframework.web.servlet.mvc.ParameterizableViewController"
+          p:viewName="index" />
+       
+    <bean name = "adopcion" class = "Controller.controladorAdopcion"/>
+    <bean name = "animal" class = "Controller.controladorAnimal"/>
+    <bean name = "blacklist" class = "Controller.controladorBlacklist"/>
+    <bean name = "donaciones" class = "Controller.controladorDonaciones"/>
+    <bean name = "empleado" class = "Controller.controladorEmpleado"/>
+    <bean name = "seguimiento" class = "Controller.controladorSeguimiento"/>
+    <bean name = "sucursal" class = "Controller.controladorSucursal"/>
+
+</beans>
